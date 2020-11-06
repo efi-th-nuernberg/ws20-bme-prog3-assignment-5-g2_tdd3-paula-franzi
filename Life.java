@@ -20,7 +20,7 @@ public class Life implements ILife {
     this();
     for (int y = 0; y < setup.length; y++)
       for (int x = 0; x < setup[y].length(); x++)
-        if (setup[y].charAt(x) != ' ')
+        if (setup[y].charAt(x) != '.')
           setAlive(x, y);
   }
 
