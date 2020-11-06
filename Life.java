@@ -1,6 +1,8 @@
 public class Life implements ILife {
   public static final int ZELLENANZAHL = 600;
-  public static boolean[][]zelle = new boolean[ZELLENANZAHL][ZELLENANZAHL];
+  public static boolean[][] zelle = new boolean[ZELLENANZAHL][ZELLENANZAHL];
+  int startzellen = 100;
+  static int gen = 0;
   
   public static void main(String[] args) {
     Life l = new Life(new String[] {  ".....",
@@ -27,20 +29,20 @@ public class Life implements ILife {
 
   @Override
   public void nukeAll() {
-    zelle[x][y]=false;
+  
 
   }
 
   @Override
   public void setAlive(int x, int y) {
-    if (n==3 && !zelle[x][y]){
+    if (neighbours(x, y)==3 && !zelle[x][y]){
       zelle[x][y] = true;
     }
   }
 
   @Override
   public void setDead(int x, int y) {
-    if(n>3){
+    if(neighbours(x, y)>3){
       zelle [x][y] = false;
     }
 
@@ -48,7 +50,7 @@ public class Life implements ILife {
 
   @Override
   public boolean isAlive(int x, int y) {
-    if(n==2 || n==3){
+    if(neighbours(x, y)==2 || neighbours(x, y)==3){
       //Zelle bleibt unverändert
     }
     return false;
@@ -57,10 +59,10 @@ public class Life implements ILife {
   @Override
   public ILife nextGeneration() {
     gen++;
-    System.out.println("Generation "+gen);
+    System.out.println("Generation "+ gen);
 
-    for(int x=0; x<ZELLEN; x++){
-      for(int y=0; y<ZELLEN; y++){
+    for(int x=0; x<ZELLENANZAHL; x++){
+      for(int y=0; y<ZELLENANZAHL; y++){
         int n = neighbours(x, y);
       }
     }
