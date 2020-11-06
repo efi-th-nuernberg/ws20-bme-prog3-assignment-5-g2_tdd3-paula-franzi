@@ -4,15 +4,18 @@ public class Life implements ILife {
 
   public static void main(String[] args) {
     Life l = new Life(new String[] { ".....", ".....", ".***.", ".....", "....." });
-    l = (Life) l.nextGeneration();
+    //l = (Life) l.nextGeneration();
   }
 
   public Life() {
+    System.out.println("Zeile 10");
+    generations = new boolean[5][5];
     nukeAll();
   }
 
   public Life(String[] setup) {
     this();
+    System.out.println("Life");
     generations = new boolean[setup.length][setup[0].length()];
     for (int y = 0; y < setup.length; y++)
       for (int x = 0; x < setup[y].length(); x++)
@@ -24,7 +27,9 @@ public class Life implements ILife {
   }
 
   public Life(boolean[][] nextGeneration){
+    
     this();
+    System.out.println("Start Life");
     generations = nextGeneration;
   }
 
@@ -68,6 +73,7 @@ public class Life implements ILife {
 
   @Override
   public ILife nextGeneration() {
+    
     boolean[][] nextGeneration = new boolean[generations.length][generations[0].length];
     for (int y = 0; y < generations.length; y++) {
       int lineLength = generations[y].length;
@@ -88,7 +94,8 @@ public class Life implements ILife {
         }
       }
     }
-    return null;
+    return new Life (nextGeneration);
+    
   }
 
   public int numLivingNeighbours(int x, int y) {
