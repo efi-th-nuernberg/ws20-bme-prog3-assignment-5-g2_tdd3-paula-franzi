@@ -22,7 +22,7 @@ public class LifeTest {
 
     @Test
     public void destroyLonelyCell() {
-       // Arrange: drei lebende Zellen
+       // Arrange: zwei lebende Zellen
         Life l = new Life();
         l.setAlive(0, 0);
         l.setAlive(0, 1);
@@ -31,7 +31,7 @@ public class LifeTest {
         // Act: Berechnung der Folgegeneration
         ILife nextGen = l.nextGeneration();
 
-        // Assert: Rasterpunkt mit drei Nachbarn sollte jetzt leben
+        // Assert: Rasterpunkt mit einem Nachbarn sollte jetzt nicht mehr leben
         assertTrue(!nextGen.isAlive(0, 1));
     }
 
@@ -47,14 +47,14 @@ public class LifeTest {
         // Act: Berechnung der Folgegeneration
         ILife nextGen = l.nextGeneration();
 
-        // Assert: Rasterpunkt mit drei Nachbarn sollte jetzt leben
+        // Assert: Rasterpunkt mit zwei Nachbarn sollte leben
         assertTrue(nextGen.isAlive(0, 1));
     }
 
 
     @Test
     public void destroyCrowdedCell() {
-       // Arrange: drei lebende Zellen
+       // Arrange: fünf lebende Zellen
         Life l = new Life();
         l.setAlive(0, 0);
         l.setAlive(0, 1);
@@ -65,7 +65,7 @@ public class LifeTest {
         // Act: Berechnung der Folgegeneration
         ILife nextGen = l.nextGeneration();
 
-        // Assert: Rasterpunkt mit drei Nachbarn sollte jetzt leben
+        // Assert: Rasterpunkt mit vier Nachbarn sollte jetzt nicht mehr leben
         assertTrue(!nextGen.isAlive(0, 1));
     }
 
