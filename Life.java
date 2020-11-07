@@ -4,15 +4,18 @@ public class Life implements ILife {
 
   public static void main(String[] args) {
     Life l = new Life(new String[] { ".....", ".....", ".***.", ".....", "....." });
-    l = (Life) l.nextGeneration();
+    // l = (Life) l.nextGeneration();
   }
 
   public Life() {
+
+    generations = new boolean[5][5];
     nukeAll();
   }
 
   public Life(String[] setup) {
     this();
+
     generations = new boolean[setup.length][setup[0].length()];
     for (int y = 0; y < setup.length; y++)
       for (int x = 0; x < setup[y].length(); x++)
@@ -23,8 +26,10 @@ public class Life implements ILife {
 
   }
 
-  public Life(boolean[][] nextGeneration){
+  public Life(boolean[][] nextGeneration) {
+
     this();
+
     generations = nextGeneration;
   }
 
@@ -68,27 +73,29 @@ public class Life implements ILife {
 
   @Override
   public ILife nextGeneration() {
+
     boolean[][] nextGeneration = new boolean[generations.length][generations[0].length];
     for (int y = 0; y < generations.length; y++) {
       int lineLength = generations[y].length;
       for (int x = 0; x < lineLength; x++) {
         int num = numLivingNeighbours(x, y);
         if (isAlive(x, y)) {
-         
+
           if (num == 2 || num == 3)
             nextGeneration[x][y] = true;
           else
             nextGeneration[x][y] = false;
-        }else{
-          if(num == 3)
-            nextGeneration [x][y] = true;
+        } else {
+          if (num == 3)
+            nextGeneration[x][y] = true;
           else
-            nextGeneration [x][y] = false;
-          
+            nextGeneration[x][y] = false;
+
         }
       }
     }
-    return null;
+    return new Life(nextGeneration);
+
   }
 
   public int numLivingNeighbours(int x, int y) {
